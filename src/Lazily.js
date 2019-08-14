@@ -32,12 +32,12 @@ const Lazily = (function IIFE(undefined) {
         }
 
         if (node instanceof HTMLImageElement) {
-          initialize(node)
-        } else {
-          [].slice.call(
-            node.querySelectorAll('img')
-          ).forEach(initialize)
+          return initialize(node)
         }
+
+        [].slice.call(
+          node.querySelectorAll('img')
+        ).forEach(initialize)
       })
     })
   }
