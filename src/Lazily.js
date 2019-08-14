@@ -4,13 +4,19 @@ const Lazily = (function IIFE(undefined) {
   const initializedKey = 'lazily'
   const lazyAttributes = ['src', 'srcset']
 
-  const isNative = 'loading' in HTMLImageElement.prototype
   const isSupported = 'querySelectorAll' in document
     && 'IntersectionObserver' in window
     && 'MutationObserver' in window
 
-  const mutationObserver = isSupported ? new MutationObserver(onMutation) : undefined
-  const intersectionObserver = isSupported ? new IntersectionObserver(onIntersection, {rootMargin: '50%'}) : undefined
+  const isNative = 'loading' in HTMLImageElement.prototype
+
+  const mutationObserver = isSupported
+    ? new MutationObserver(onMutation)
+    : undefined
+
+  const intersectionObserver = isSupported && !isNative
+    ? new IntersectionObserver(onIntersection, {rootMargin: '50%'})
+    : undefined
 
   if (isSupported) {
     mutationObserver.observe(document.documentElement, {
@@ -90,8 +96,14 @@ const Lazily = (function IIFE(undefined) {
 
       return this
     },
-    getIntersectionObserverEntries: function () {return intersectionObserver.takeRecords()},
-    isNative: function () {return isNative},
-    isSupported: function () {return isSupported},
+    getIntersectionObserverEntries: function () {
+      return intersectionObserver.takeRecords()
+    },
+    isNative: function () {
+      return isNative
+    },
+    isSupported: function () {
+      return isSupported
+    },
   }
 })()
