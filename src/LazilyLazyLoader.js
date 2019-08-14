@@ -1,7 +1,7 @@
-const LazilyLazyLoader = (function IIFE(undefined) {
+const Lazily = (function IIFE(undefined) {
   'use strict'
 
-  const initializedKey = 'lazilyLazyLoader'
+  const initializedKey = 'lazily'
   const lazyAttributes = ['src', 'srcset']
 
   const isNative = 'loading' in HTMLImageElement.prototype
