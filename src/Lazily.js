@@ -87,17 +87,21 @@ const Lazily = (function IIFE(undefined) {
 
   return {
     forceLoad: function () {
-      [].slice.call(
-        intersectionObserver.takeRecords()
-      ).forEach(function (entry) {
-        load(entry.target)
-        onLoad.call(element)
-      })
+      if (intersectionObserver) {
+        [].slice.call(
+          intersectionObserver.takeRecords()
+        ).forEach(function (entry) {
+          load(entry.target)
+          onLoad.call(element)
+        })
+      }
 
       return this
     },
     getIntersectionObserverEntries: function () {
-      return intersectionObserver.takeRecords()
+      if (intersectionObserver) {
+        return intersectionObserver.takeRecords()
+      }
     },
     isNative: function () {
       return isNative
