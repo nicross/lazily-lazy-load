@@ -1,7 +1,7 @@
-# Lazily Lazy Loader
+# Lazily lazy loader
 A lazy loader for lazy developers.
 
-## Compatibility
+## Browser compatibility
 - Works in evergreen browsers
 - For IE11 compatibility, please provide polyfills for `IntersectionObserver` and `MutationObserver`
 - Otherwise encourage your users to dump older browsers
@@ -10,7 +10,7 @@ A lazy loader for lazy developers.
 Simply add to the document `<head>`:
 
 ```html
-<script src="path/to/LazilyLazyLoader.js"></script>
+<script src="path/to/Lazily.js"></script>
 ```
 
 ## Next Steps
