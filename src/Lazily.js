@@ -92,7 +92,6 @@ const Lazily = (function IIFE(undefined) {
           intersectionObserver.takeRecords()
         ).forEach(function (entry) {
           load(entry.target)
-          onLoad.call(element)
         })
       }
 
