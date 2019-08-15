@@ -27,7 +27,7 @@ const Lazily = (function IIFE(undefined) {
 
   function onMutation(entries) {
     entries.forEach(function (entry) {
-      [].slice.call(entry.addedNodes).forEach(function (node) {
+      [].slice.call(entry.addedNodes).forEach(function capture(node) {
         if (!(node instanceof Element)) {
           return
         }
@@ -57,7 +57,7 @@ const Lazily = (function IIFE(undefined) {
       return
     }
 
-    lazyAttributes.forEach(function (key) {
+    lazyAttributes.forEach(function swapToData(key) {
       if (key in element) {
         element.dataset[key] = element[key] || ''
         element.removeAttribute(key)
@@ -78,7 +78,7 @@ const Lazily = (function IIFE(undefined) {
   function load(element) {
     intersectionObserver.unobserve(element)
 
-    lazyAttributes.forEach(function (key) {
+    lazyAttributes.forEach(function swapFromData(key) {
       if (key in element.dataset) {
         element[key] = element.dataset[key]
         delete element.dataset[key]
