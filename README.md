@@ -6,16 +6,18 @@ If the native `loading` attribute is supported, then it is applied.
 Otherwise an `IntersectionObserver` is used to load elements as needed.
 
 ## Browser compatibility
-- Works in evergreen browsers
+- Compatible with all evergreen browsers
 - For IE11 compatibility, please provide polyfills for `IntersectionObserver` and `MutationObserver`
-- Otherwise encourage your users to dump older browsers
+- Otherwise encourage your users to dump their older browsers
 
 ## Recommended usage
-Simply add to the document `<head>`:
+Simply add the minified script to the document `<head>`:
 
 ```html
-<script src="path/to/Lazily.js"></script>
+<script src="/path/to/Lazily.min.js"></script>
 ```
+
+For certain setups, it may be advantageous to include it inline.
 
 ## Next steps
 - JSDoc comments
