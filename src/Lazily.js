@@ -101,9 +101,13 @@ const Lazily = (function IIFE(undefined) {
       forceLoad()
       return this
     },
-    getIntersectionObserverEntries: function () {
+    getObserved: function () {
       if (intersectionObserver) {
-        return intersectionObserver.takeRecords()
+        return [].slice.call(
+          intersectionObserver.takeRecords()
+        ).map(function (entry) {
+          return entry.target
+        })
       }
     },
     isSupported: function () {
