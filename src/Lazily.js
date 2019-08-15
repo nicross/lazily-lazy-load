@@ -106,9 +106,6 @@ const Lazily = (function IIFE(undefined) {
         return intersectionObserver.takeRecords()
       }
     },
-    isNative: function () {
-      return isNative
-    },
     isSupported: function () {
       return isSupported
     },
