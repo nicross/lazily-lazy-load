@@ -58,7 +58,7 @@ const Lazily = (function IIFE(undefined) {
     }
 
     lazyAttributes.forEach(function swapToData(key) {
-      if (key in element) {
+      if (element.hasAttribute(key)) {
         element.dataset[key] = element[key] || ''
         element.removeAttribute(key)
       }
