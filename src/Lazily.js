@@ -8,13 +8,11 @@ const Lazily = (function IIFE(undefined) {
     && 'IntersectionObserver' in window
     && 'MutationObserver' in window
 
-  const isNative = 'loading' in HTMLImageElement.prototype
-
   const mutationObserver = isSupported
     ? new MutationObserver(onMutation)
     : undefined
 
-  const intersectionObserver = isSupported && !isNative
+  const intersectionObserver = isSupported
     ? new IntersectionObserver(onIntersection, {rootMargin: '50%'})
     : undefined
 
@@ -50,7 +48,7 @@ const Lazily = (function IIFE(undefined) {
 
     element.dataset[initializedKey] = ''
 
-    if (isNative) {
+    if ('loading' in element) {
       if (!element.hasAttribute('loading')) {
         element.setAttribute('loading', 'lazy')
       }
