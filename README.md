@@ -10,16 +10,16 @@ Otherwise an `IntersectionObserver` is used to load elements as needed.
 - For IE11 compatibility, please provide polyfills for `IntersectionObserver` and `MutationObserver`
 - Otherwise encourage your users to dump older browsers
 
-## Usage
+## Recommended usage
 Simply add to the document `<head>`:
 
 ```html
 <script src="path/to/Lazily.js"></script>
 ```
 
-## Next Steps
+## Next steps
 - JSDoc comments
 - Integrations tests
 - Uglification build step within the `dist/` directory
 - Contribution guidelines
-- Additional element support (e.g. `<iframe>`, `<picture>`, `<video>`)
+- Additional element support (e.g. `<picture>`, `<video>`)

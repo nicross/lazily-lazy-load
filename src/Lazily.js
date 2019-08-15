@@ -3,6 +3,7 @@ const Lazily = (function IIFE(undefined) {
 
   const initializedKey = 'lazily'
   const lazyAttributes = ['src', 'srcset']
+  const tagNames = ['img', 'iframe']
 
   const isSupported = 'querySelectorAll' in document
     && 'IntersectionObserver' in window
@@ -30,12 +31,13 @@ const Lazily = (function IIFE(undefined) {
           return
         }
 
-        if (node instanceof HTMLImageElement) {
+        const tagName = node.tagName.toLowerCase()
+        if (tagNames.indexOf(tagName) != -1) {
           return initialize(node)
         }
 
         [].slice.call(
-          node.querySelectorAll('img')
+          node.querySelectorAll(tagNames.join(','))
         ).forEach(initialize)
       })
     })
