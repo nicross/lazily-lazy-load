@@ -14,7 +14,7 @@ Otherwise an `IntersectionObserver` is used to load elements as needed.
 Simply add the minified script to the document `<head>`:
 
 ```html
-<script src="/path/to/Lazily.min.js"></script>
+<script src=".../dist/Lazily.min.js"></script>
 ```
 
 For certain setups, it may be advantageous to include it inline.
