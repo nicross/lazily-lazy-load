@@ -8,9 +8,9 @@ Otherwise an `IntersectionObserver` is used to load elements as needed.
 ## Browser compatibility
 - Compatible with all evergreen browsers
 - For IE11 compatibility, please provide polyfills for `IntersectionObserver` and `MutationObserver`
-- Otherwise encourage your users to dump their older browsers
+- Otherwise encourage your users to dump their outdated browsers
 
-## Recommended usage
+## Standard usage
 Simply add the minified script to the document `<head>`:
 
 ```html
