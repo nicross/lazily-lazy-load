@@ -22,6 +22,7 @@ const Lazily = (function IIFE(undefined) {
     mutationObserver.observe(document.documentElement, {
       childList: true,
     })
+    window.addEventListener('beforeprint', forceLoad)
   }
 
   function onMutation(entries) {
@@ -85,16 +86,21 @@ const Lazily = (function IIFE(undefined) {
     })
   }
 
+  function forceLoad() {
+    if (!intersectionObserver) {
+      return
+    }
+
+    [].slice.call(
+      intersectionObserver.takeRecords()
+    ).forEach(function (entry) {
+      load(entry.target)
+    })
+  }
+
   return {
     forceLoad: function () {
-      if (intersectionObserver) {
-        [].slice.call(
-          intersectionObserver.takeRecords()
-        ).forEach(function (entry) {
-          load(entry.target)
-        })
-      }
-
+      forceLoad()
       return this
     },
     getIntersectionObserverEntries: function () {
