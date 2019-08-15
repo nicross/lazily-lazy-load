@@ -32,6 +32,7 @@ const Lazily = (function IIFE(undefined) {
         }
 
         const tagName = node.tagName.toLowerCase()
+
         if (tagNames.indexOf(tagName) != -1) {
           return initialize(node)
         }
