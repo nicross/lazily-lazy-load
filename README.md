@@ -1,5 +1,5 @@
 # Lazily.js
-A lazy loader for lazy developers.
+A lazy loader for lazy folks.
 
 This library leverages a `MutationObserver` to detect when elements are added to the DOM.
 If the native `loading` attribute is supported, then it is applied.
