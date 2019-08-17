@@ -20,26 +20,23 @@ const Lazily = (function IIFE(undefined) {
   if (isSupported) {
     mutationObserver.observe(document.documentElement, {
       childList: true,
+      subtree: true,
     })
     window.addEventListener('beforeprint', forceLoad)
   }
 
   function onMutation(entries) {
     entries.forEach(function (entry) {
-      [].slice.call(entry.addedNodes).forEach(function (node) {
-        if (!(node instanceof Element)) {
-          return
+      [].slice.call(
+        entry.addedNodes
+      ).forEach(function (node) {
+        if (node instanceof Element) {
+          const tagName = node.tagName.toLowerCase()
+
+          if (tagNames.indexOf(tagName) != -1) {
+            initialize(node)
+          }
         }
-
-        const tagName = node.tagName.toLowerCase()
-
-        if (tagNames.indexOf(tagName) != -1) {
-          return initialize(node)
-        }
-
-        [].slice.call(
-          node.querySelectorAll(tagNames.join(','))
-        ).forEach(initialize)
       })
     })
   }
