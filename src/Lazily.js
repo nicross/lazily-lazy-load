@@ -88,14 +88,20 @@ const Lazily = (function IIFE(undefined) {
   }
 
   function forceLoad() {
+    getObserved().forEach(function (element) {
+      load(element)
+    })
+  }
+
+  function getObserved() {
     if (!intersectionObserver) {
-      return
+      return []
     }
 
-    [].slice.call(
+    return [].slice.call(
       intersectionObserver.takeRecords()
-    ).forEach(function (entry) {
-      load(entry.target)
+    ).map(function (entry) {
+      return entry.target
     })
   }
 
@@ -105,13 +111,7 @@ const Lazily = (function IIFE(undefined) {
       return this
     },
     getObserved: function () {
-      if (intersectionObserver) {
-        return [].slice.call(
-          intersectionObserver.takeRecords()
-        ).map(function (entry) {
-          return entry.target
-        })
-      }
+      return getObserved()
     },
     isSupported: function () {
       return isSupported
