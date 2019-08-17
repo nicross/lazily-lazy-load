@@ -23,7 +23,6 @@ const Lazily = (function IIFE(undefined) {
 
     window.matchMedia('print').addListener(function (e) {
       if (e.matches) {
-        console.log('forceLoad')
         forceLoad()
       }
     })
