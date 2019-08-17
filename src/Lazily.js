@@ -26,7 +26,7 @@ const Lazily = (function IIFE(undefined) {
 
   function onMutation(entries) {
     entries.forEach(function (entry) {
-      [].slice.call(entry.addedNodes).forEach(function capture(node) {
+      [].slice.call(entry.addedNodes).forEach(function (node) {
         if (!(node instanceof Element)) {
           return
         }
