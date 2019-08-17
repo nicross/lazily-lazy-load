@@ -1,5 +1,6 @@
 # Lazily.js
 A lazy loader for lazy folks.
+Inspired by [this tutorial](https://shiftbacktick.io/code/2019/08/17/lazily-lazy-loading.html).
 
 This library leverages a `MutationObserver` to detect when elements are added to the DOM.
 If the native `loading` attribute is supported, then it is applied.
@@ -20,8 +21,10 @@ Simply add the minified script to the document `<head>`:
 For certain setups, it may be advantageous to include it inline.
 
 ## Next steps
-- JSDoc comments
+- Additional element support (e.g. `<picture>`, `<video>`)
+
+### Stretch goals
+- JSDoc comment blocks
+- Contribution guidelines
 - Integrations tests
 - Uglification build step within the `dist/` directory
-- Contribution guidelines
-- Additional element support (e.g. `<picture>`, `<video>`)
