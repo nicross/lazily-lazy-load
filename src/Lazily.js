@@ -20,7 +20,13 @@ const Lazily = (function IIFE(undefined) {
       childList: true,
       subtree: true,
     })
-    window.addEventListener('beforeprint', forceLoad)
+
+    window.matchMedia('print').addListener(function (e) {
+      if (e.matches) {
+        console.log('forceLoad')
+        forceLoad()
+      }
+    })
   }
 
   function onMutation(entries) {
