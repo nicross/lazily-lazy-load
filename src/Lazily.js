@@ -28,7 +28,7 @@ const Lazily = (function IIFE(undefined) {
       [].slice.call(
         entry.addedNodes
       ).forEach(function (node) {
-        if (node instanceof HTMLIframeElement || node instanceof HTMLImageElement) {
+        if (node instanceof HTMLIFrameElement || node instanceof HTMLImageElement) {
           initialize(node)
         }
       })
