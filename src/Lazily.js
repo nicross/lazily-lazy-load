@@ -4,8 +4,7 @@ const Lazily = (function IIFE(undefined) {
   const initializedKey = 'lazily'
   const lazyAttributes = ['src', 'srcset']
 
-  const isSupported = 'querySelectorAll' in document
-    && 'IntersectionObserver' in window
+  const isSupported = 'IntersectionObserver' in window
     && 'MutationObserver' in window
 
   const mutationObserver = isSupported
