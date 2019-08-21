@@ -1,3 +1,12 @@
+/**
+ * A lazy loader for lazy folks.
+ *
+ * This library leverages a `MutationObserver` to detect when elements are added to the DOM.
+ * If the native `loading` attribute is supported, then it is applied.
+ * Otherwise an `IntersectionObserver` is used to load elements as needed.
+ *
+ * @version 1.0-beta
+ */
 const Lazily = (function IIFE(undefined) {
   'use strict'
 
@@ -125,7 +134,15 @@ const Lazily = (function IIFE(undefined) {
     })
   }
 
+  /** @yields Lazily */
   return {
+    /**
+     * Forces all observed elements to load.
+     * Has no effect on elements supporting the `loading` attribute.
+     *
+     * @alias Lazily.forceLoad()
+     * @returns Lazily - chainable `this`
+     */
     forceLoad: function () {
       if (isSupported) {
         forceLoad()
@@ -133,6 +150,13 @@ const Lazily = (function IIFE(undefined) {
 
       return this
     },
+    /**
+     * Returns whether the minimum requirements are met.
+     * If it's supported, then it's running.
+     *
+     * @alias Lazily.isSupported()
+     * @returns boolean
+     */
     isSupported: function () {
       return isSupported
     },
