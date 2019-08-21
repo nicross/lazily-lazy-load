@@ -21,9 +21,6 @@ Simply add the minified script to the document `<head>`:
 For certain setups, it may be advantageous to include it inline.
 
 ## Next steps
-- Additional element support (e.g. `<picture>`, `<video>`)
-
-### Stretch goals
 - JSDoc comment blocks
 - Contribution guidelines
 - Integrations tests
