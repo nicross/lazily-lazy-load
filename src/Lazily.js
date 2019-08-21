@@ -10,6 +10,22 @@ const Lazily = (function IIFE(undefined) {
     img: function (element, swap) {
       swap(element, ['src', 'srcset'])
     },
+    picture: function (element, swap) {
+      [].slice.call(
+        element.querySelectorAll('source')
+      ).forEach(function (source) {
+        swap(source, ['src', 'srcset'])
+      })
+    },
+    video: function (element, swap) {
+      [].slice.call(
+        element.querySelectorAll('source')
+      ).forEach(function (source) {
+        swap(source, ['src'])
+      })
+
+      swap(element, ['poster', 'src'])
+    },
   }
 
   const isSupported = 'IntersectionObserver' in window
