@@ -2,7 +2,15 @@ const Lazily = (function IIFE(undefined) {
   'use strict'
 
   const initializedKey = 'lazily'
-  const lazyAttributes = ['src', 'srcset']
+
+  const lazyElements = {
+    iframe: function (element, swap) {
+      swap(element, ['src'])
+    },
+    img: function (element, swap) {
+      swap(element, ['src', 'srcset'])
+    },
+  }
 
   const isSupported = 'IntersectionObserver' in window
     && 'MutationObserver' in window
@@ -33,7 +41,7 @@ const Lazily = (function IIFE(undefined) {
       [].slice.call(
         entry.addedNodes
       ).forEach(function (node) {
-        if (node instanceof HTMLIFrameElement || node instanceof HTMLImageElement) {
+        if (node instanceof Element && node.tagName.toLowerCase() in lazyElements) {
           initialize(node)
         }
       })
@@ -54,12 +62,8 @@ const Lazily = (function IIFE(undefined) {
       return
     }
 
-    lazyAttributes.forEach(function swapToData(key) {
-      if (element.hasAttribute(key)) {
-        element.dataset[key] = element[key]
-        element.removeAttribute(key)
-      }
-    })
+    const tagName = element.tagName.toLowerCase()
+    lazyElements[tagName](element, swapToData)
 
     intersectionObserver.observe(element)
   }
@@ -75,12 +79,8 @@ const Lazily = (function IIFE(undefined) {
   function load(element) {
     intersectionObserver.unobserve(element)
 
-    lazyAttributes.forEach(function swapFromData(key) {
-      if (key in element.dataset) {
-        element[key] = element.dataset[key]
-        delete element.dataset[key]
-      }
-    })
+    const tagName = element.tagName.toLowerCase()
+    lazyElements[tagName](element, swapFromData)
   }
 
   function forceLoad() {
@@ -88,6 +88,24 @@ const Lazily = (function IIFE(undefined) {
       intersectionObserver.takeRecords()
     ).forEach(function (entry) {
       load(entry.target)
+    })
+  }
+
+  function swapFromData(element, keys) {
+    keys.forEach(function (key) {
+      if (key in element.dataset) {
+        element[key] = element.dataset[key]
+        delete element.dataset[key]
+      }
+    })
+  }
+
+  function swapToData(element, keys) {
+    keys.forEach(function (key) {
+      if (element.hasAttribute(key)) {
+        element.dataset[key] = element[key]
+        element.removeAttribute(key)
+      }
     })
   }
 
