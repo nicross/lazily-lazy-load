@@ -133,13 +133,13 @@ const Lazily = (function IIFE(undefined) {
     })
   }
 
-  /** @yields Lazily */
+  /** @lendss Lazily */
   return {
     /**
      * Forces all observed elements to load.
      * Has no effect on elements supporting the `loading` attribute.
      *
-     * @alias Lazily.forceLoad()
+     * @alias Lazily.forceLoad
      * @returns Lazily - chainable `this`
      */
     forceLoad: function () {
@@ -153,7 +153,7 @@ const Lazily = (function IIFE(undefined) {
      * Returns whether the minimum requirements are met.
      * If it's supported, then it's running.
      *
-     * @alias Lazily.isSupported()
+     * @alias Lazily.isSupported
      * @returns boolean
      */
     isSupported: function () {
