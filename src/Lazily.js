@@ -133,7 +133,7 @@ const Lazily = (function IIFE(undefined) {
     })
   }
 
-  /** @lendss Lazily */
+  /** @lends Lazily */
   return {
     /**
      * Forces all observed elements to load.
