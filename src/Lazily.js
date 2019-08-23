@@ -93,17 +93,16 @@ const Lazily = (function IIFE(undefined) {
     intersectionObserver.observe(element)
   }
 
-  function onIntersection(entries) {
+  function onIntersection(entries, observer) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         load(entry.target)
+        observer.unobserve(entry.target)
       }
     })
   }
 
   function load(element) {
-    intersectionObserver.unobserve(element)
-
     const tagName = element.tagName.toLowerCase()
     lazyElements[tagName](element, swapFromData)
   }
