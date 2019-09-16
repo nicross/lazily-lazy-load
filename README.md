@@ -1,4 +1,4 @@
-# Lazily.js
+# lazilyLoader.js
 A lazy loader for lazy folks.
 
 This library leverages a `MutationObserver` to detect when its target elements are added to the DOM.
@@ -16,7 +16,7 @@ For certain setups, it may be advantageous to include it inline:
 
 ```html
 <head>
-  <script src=".../dist/Lazily.min.js"></script>
+  <script src=".../dist/lazilyLoader.min.js"></script>
 </head>
 ```
 
@@ -24,8 +24,8 @@ No other markup changes are required.
 It will automatically lazy load `<iframe>`, `<img>`, `<picture>`, and `<video>` elements in supported browsers.
 
 ### API
-- `Lazily.forceLoad()` - Forces all observed elements to load.
-- `Lazily.isSupported()` - Returns `true` if the library is working.
+- `lazilyLoader.forceLoad()` - Forces all observed elements to load.
+- `lazilyLoader.isSupported()` - Returns `true` if the library is working.
 
 ## Credits
 Inspired by [this tutorial](https://shiftbacktick.io/code/2019/08/17/lazily-lazy-loading.html).

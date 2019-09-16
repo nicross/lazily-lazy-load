@@ -7,12 +7,12 @@
  *
  * @version 1.0-beta
  */
-const Lazily = (function IIFE(undefined) {
+const lazilyLoader = (function IIFE(undefined) {
   'use strict'
 
   const initializedKey = 'lazily'
 
-  const lazyElements = {
+  const elements = {
     iframe: function (element, swap) {
       swap(element, ['src'])
     },
@@ -66,7 +66,7 @@ const Lazily = (function IIFE(undefined) {
       [].slice.call(
         entry.addedNodes
       ).forEach(function (node) {
-        if (node instanceof Element && node.tagName.toLowerCase() in lazyElements) {
+        if (node instanceof Element && node.tagName.toLowerCase() in elements) {
           initialize(node)
         }
       })
@@ -88,7 +88,7 @@ const Lazily = (function IIFE(undefined) {
     }
 
     const tagName = element.tagName.toLowerCase()
-    lazyElements[tagName](element, swapToData)
+    elements[tagName](element, swapToData)
 
     intersectionObserver.observe(element)
   }
@@ -104,7 +104,7 @@ const Lazily = (function IIFE(undefined) {
 
   function load(element) {
     const tagName = element.tagName.toLowerCase()
-    lazyElements[tagName](element, swapFromData)
+    elements[tagName](element, swapFromData)
   }
 
   function forceLoad() {
@@ -133,14 +133,14 @@ const Lazily = (function IIFE(undefined) {
     })
   }
 
-  /** @lends Lazily */
+  /** @lends lazilyLoader */
   return {
     /**
      * Forces all observed elements to load.
      * Has no effect on elements supporting the `loading` attribute.
      *
-     * @alias Lazily.forceLoad
-     * @returns Lazily - chainable `this`
+     * @alias lazilyLoader.forceLoad
+     * @returns lazilyLoader - chainable `this`
      */
     forceLoad: function () {
       if (isSupported) {
@@ -153,7 +153,7 @@ const Lazily = (function IIFE(undefined) {
      * Returns whether the minimum requirements are met.
      * If it's supported, then it's running.
      *
-     * @alias Lazily.isSupported
+     * @alias lazilyLoader.isSupported
      * @returns boolean
      */
     isSupported: function () {
